@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class LoginController extends Controller
 {
     function index() 
     {
@@ -28,10 +28,15 @@ class UserController extends Controller
        ];
 
        if (Auth::attempt($infologin)) {
-            echo "succces";
-            exit();
+            return redirect('page');
         } else {
             return redirect('')->withErrors('Login Failed')->withInput();
        }
+    }
+
+    function logout() 
+    {
+        Auth::logout();
+        return redirect('');
     }
 }
